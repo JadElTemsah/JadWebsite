@@ -1,7 +1,7 @@
 # Site settings
 baseURL = "https://jadeltemsah.netlify.app/"
 languageCode = "en-us"
-title = "Forty"
+title = "Jad Website"
 theme = "forty"
 
 # Enter your tracking code to enable Google Analytics
