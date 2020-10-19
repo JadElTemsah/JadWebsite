@@ -98,10 +98,10 @@ disqusShortname = ""
       url = "blogs/gtnm"
 
     [[params.tiles.showcase]]
-      title = "Projects in MFA"
-      subtitle = "Data Analytics in Finance"
+      title = "My Resume"
+      subtitle = "Find out more about me by reading my resume"
       image = "pic02.jpg"
-      url = "blogs/tempus"
+      url = "blogs/jtcv.pdf"
 
     [[params.tiles.showcase]]
       title = "Magna"
