@@ -47,17 +47,17 @@ disqusShortname = ""
       name = "Home"
       url = "#"
 
-    [[params.navigation.links]]
-      name = "Blogs"
-      url = "blogs"
+   # [[params.navigation.links]]
+    #  name = "Blogs"
+    #  url = "blogs"
 
-    [[params.navigation.links]]
-      name = "Generic Blog"
-      url = "blogs/ipsum"
+   # [[params.navigation.links]]
+    #  name = "Generic Blog"
+    #  url = "blogs/ipsum"
 
-    [[params.navigation.links]]
-      name = "Elements"
-      url = "elements.html"
+   # [[params.navigation.links]]
+    #  name = "Elements"
+    #  url = "elements.html"
 
     # Add custom links here by uncommenting code below. To remove links just delete
     # the [[params.navigation.links]] map associated with that link. Copy and paste
@@ -67,14 +67,14 @@ disqusShortname = ""
     #    url = "UrlOfLink"
 
     # Button Style 1
-    [[params.navigation.button1]]
-      name = "Get Started"
-      url = "blogs"
+  #  [[params.navigation.button1]]
+   #   name = "Get Started"
+   #   url = "blogs"
 
     # Button Style 2
-    [[params.navigation.button2]]
-      name = "Log In"
-      url = "#"
+   # [[params.navigation.button2]]
+    #  name = "Log In"
+    #  url = "#"
 
 
   # Banner section
@@ -82,7 +82,7 @@ disqusShortname = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, my name is Jad El Temsah"
-    subtitle = "A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP\nAND RELEASED UNDER THE CREATIVE COMMONS."
+    subtitle = "My name is Jad El Temsah, and I am London Business School MFA student. I was born and raised in Beirut , Lebanon. I have always tried to get out of my comfort zone by exploring new things which led me to my passion in finance. ."
     buttonText = "Get Started"
 
 
@@ -93,39 +93,39 @@ disqusShortname = ""
     
     [[params.tiles.showcase]]
       title = "Get to Know Me"
-      #subtitle = "Ip"
-      image = "pic01.jpg"
+      subtitle = "Some Information about me"
+      image = "info.jpg"
       url = "blogs/gtnm"
 
     [[params.tiles.showcase]]
       title = "My Resume"
       subtitle = "Find out more about me by reading my resume"
-      image = "pic02.jpg"
+      image = "cv.jpg"
       url = "blogs/jtcv.pdf"
 
     [[params.tiles.showcase]]
-      title = "Magna"
-      subtitle = "Lorem Etiam Nullam"
-      image = "pic03.jpg"
-      url = "blogs/magna"
+        title = "Moovies"
+      subtitle = "Moovies Analysis"
+      image = "Cinema.jpg"
+      url = "blogs/moovies"
 
     [[params.tiles.showcase]]
-      title = "Ipsum"
-      subtitle = "Nisl Sed Aliquam"
-      image = "pic04.jpg"
-      url = "blogs/ipsum"
+      title = "Climate Change"
+      subtitle = "Climate Change Analysis"
+      image = "temp.jpg"
+      url = "blogs/climate"
 
-    [[params.tiles.showcase]]
-      title = "Consequat"
-      subtitle = "Ipsum Dolor Sit Amet"
-      image = "pic05.jpg"
-      url = "blogs/ipsum"
+  #  [[params.tiles.showcase]]
+   #   title = "Consequat"
+   #   subtitle = "Ipsum Dolor Sit Amet"
+   #   image = "pic05.jpg"
+    #  url = "blogs/ipsum"
 
-    [[params.tiles.showcase]]
-      title = "Etiam"
-      subtitle = "Feugiat Amet Tempus"
-      image = "pic06.jpg"
-      url = "blogs/ipsum"
+  #  [[params.tiles.showcase]]
+   #   title = "Etiam"
+   #   subtitle = "Feugiat Amet Tempus"
+   #   image = "pic06.jpg"
+   #   url = "blogs/ipsum"
     # You can make more showcases by copy and pasting the code above
 
   [params.blog]
@@ -136,16 +136,16 @@ disqusShortname = ""
     # To add more blogs just copy and paste the code.
 
   # Section Type Two
-  [params.two]
-    enable = true
-    title = "Massa libero"
-    subtitle = """Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. 
-    Mauris aliquet magna magna sed nunc rhoncus pharetra. 
-    Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. 
-    Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero.
-    Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus."""
-    buttonText = "Get Started"
-    url = "blogs"
+ # [params.two]
+  #  enable = true
+  #  title = "Massa libero"
+  #  subtitle = """Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. 
+   # Mauris aliquet magna magna sed nunc rhoncus pharetra. 
+   # Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. 
+   # Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero.
+   # Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus."""
+  #  buttonText = "Get Started"
+  #  url = "blogs"
 
 
   # Contact section
