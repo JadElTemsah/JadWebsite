@@ -95,7 +95,7 @@ disqusShortname = ""
       title = "Get to Know Me"
       #subtitle = "Ip"
       image = "pic01.jpg"
-      url = "blogs/aliquam"
+      url = "blogs/gtnm"
 
     [[params.tiles.showcase]]
       title = "Projects in MFA"
