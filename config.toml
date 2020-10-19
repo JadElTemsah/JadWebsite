@@ -104,8 +104,8 @@ disqusShortname = ""
       url = "blogs/jtcv.pdf"
 
     [[params.tiles.showcase]]
-        title = "Moovies"
-      subtitle = "Moovies Analysis"
+        title = "Movies"
+      subtitle = "Movies Analysis"
       image = "Cinema.jpg"
       url = "blogs/moovies"
 
