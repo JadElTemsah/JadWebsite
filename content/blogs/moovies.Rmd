@@ -18,7 +18,7 @@ library(vroom)
 ```
 
 
-# Analysis of movies- IMDB dataset
+# Analysis of movies- IMDB datase
 
 ```{r,load_movies, warning=FALSE, message=FALSE}
 movies <- read_csv(here::here("data", "movies.csv"))#import the data set of movies
