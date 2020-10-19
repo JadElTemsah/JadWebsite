@@ -1,0 +1,162 @@
+---
+title: "Moovies Analysis"
+output: html_document
+---
+
+
+
+<div id="analysis-of-movies--imdb-dataset" class="section level1">
+<h1>Analysis of movies- IMDB dataset</h1>
+<pre class="r"><code>movies &lt;- read_csv(here::here(&quot;data&quot;, &quot;movies.csv&quot;))#import the data set of movies
+glimpse(movies)#see the variables of movies</code></pre>
+<pre><code>## Rows: 2,961
+## Columns: 11
+## $ title               &lt;chr&gt; &quot;Avatar&quot;, &quot;Titanic&quot;, &quot;Jurassic World&quot;, &quot;The Aveng…
+## $ genre               &lt;chr&gt; &quot;Action&quot;, &quot;Drama&quot;, &quot;Action&quot;, &quot;Action&quot;, &quot;Action&quot;, …
+## $ director            &lt;chr&gt; &quot;James Cameron&quot;, &quot;James Cameron&quot;, &quot;Colin Trevorro…
+## $ year                &lt;dbl&gt; 2009, 1997, 2015, 2012, 2008, 1999, 1977, 2015, 2…
+## $ duration            &lt;dbl&gt; 178, 194, 124, 173, 152, 136, 125, 141, 164, 93, …
+## $ gross               &lt;dbl&gt; 760505847, 658672302, 652177271, 623279547, 53331…
+## $ budget              &lt;dbl&gt; 2.37e+08, 2.00e+08, 1.50e+08, 2.20e+08, 1.85e+08,…
+## $ cast_facebook_likes &lt;dbl&gt; 4834, 45223, 8458, 87697, 57802, 37723, 13485, 92…
+## $ votes               &lt;dbl&gt; 886204, 793059, 418214, 995415, 1676169, 534658, …
+## $ reviews             &lt;dbl&gt; 3777, 2843, 1934, 2425, 5312, 3917, 1752, 1752, 3…
+## $ rating              &lt;dbl&gt; 7.9, 7.7, 7.0, 8.1, 9.0, 6.5, 8.7, 7.5, 8.5, 7.2,…</code></pre>
+<div id="use-your-data-import-inspection-and-cleaning-skills-to-answer-the-following" class="section level2">
+<h2>Use your data import, inspection, and cleaning skills to answer the following:</h2>
+<ul>
+<li>Produce a table with the count of movies by genre, ranked in descending order</li>
+</ul>
+<pre class="r"><code>genres&lt;-movies%&gt;%group_by(genre)%&gt;%count(sort=TRUE)
+#group the data set by genre and count number of movies for each genre in descending order
+genres</code></pre>
+<pre><code>## # A tibble: 17 x 2
+## # Groups:   genre [17]
+##    genre           n
+##    &lt;chr&gt;       &lt;int&gt;
+##  1 Comedy        848
+##  2 Action        738
+##  3 Drama         498
+##  4 Adventure     288
+##  5 Crime         202
+##  6 Biography     135
+##  7 Horror        131
+##  8 Animation      35
+##  9 Fantasy        28
+## 10 Documentary    25
+## 11 Mystery        16
+## 12 Sci-Fi          7
+## 13 Family          3
+## 14 Musical         2
+## 15 Romance         2
+## 16 Western         2
+## 17 Thriller        1</code></pre>
+<ul>
+<li>Produce a table with the average gross earning and budget (<code>gross</code> and <code>budget</code>) by genre. Calculate a variable <code>return_on_budget</code> which shows how many $ did a movie make at the box office for each $ of its budget. Ranked genres by this <code>return_on_budget</code> in descending order</li>
+</ul>
+<pre class="r"><code>means&lt;-movies%&gt;%group_by(genre)%&gt;% summarise(avg_gross=mean(gross),avg_budget=mean(budget),return_on_budget=avg_gross/avg_budget,.groups = &#39;drop&#39;)%&gt;%arrange(desc(return_on_budget))
+#group the data set by genre, calculate the average gross earning and budget by genre and return_on_budget which equals to average gross earning/average budget, then use arrange() to range genres in descending order
+means</code></pre>
+<pre><code>## # A tibble: 17 x 4
+##    genre        avg_gross avg_budget return_on_budget
+##    &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Musical      92084000    3189500          28.9    
+##  2 Family      149160478.  14833333.         10.1    
+##  3 Western      20821884    3465000           6.01   
+##  4 Documentary  17353973.   5887852.          2.95   
+##  5 Horror       37713738.  13504916.          2.79   
+##  6 Fantasy      42408841.  17582143.          2.41   
+##  7 Comedy       42630552.  24446319.          1.74   
+##  8 Mystery      67533021.  39218750           1.72   
+##  9 Animation    98433792.  61701429.          1.60   
+## 10 Biography    45201805.  28543696.          1.58   
+## 11 Adventure    95794257.  66290069.          1.45   
+## 12 Drama        37465371.  26242933.          1.43   
+## 13 Crime        37502397.  26596169.          1.41   
+## 14 Romance      31264848.  25107500           1.25   
+## 15 Action       86583860.  71354888.          1.21   
+## 16 Sci-Fi       29788371.  27607143.          1.08   
+## 17 Thriller         2468     300000           0.00823</code></pre>
+<ul>
+<li>Produce a table that shows the top 15 directors who have created the highest gross revenue in the box office. Don’t just show the total gross amount, but also the mean, median, and standard deviation per director.</li>
+</ul>
+<pre class="r"><code>top15_director&lt;- movies %&gt;%group_by(director) %&gt;%summarise(total_gross = sum(gross, na.rm=TRUE),avg_gross=mean(gross, na.rm=TRUE),med_gross=median(gross,na.rm=TRUE),sd_gross=sd(gross, na.rm=TRUE),count = n(),.groups = &#39;drop&#39;) %&gt;%arrange(desc(total_gross),.groups = &#39;drop&#39;)%&gt;%head(15)
+#group movies by director, sum the total gross for each director, calculate the mean, median, sd of gross for each director, then use arrange() to range total gross in descending order and choose the top 15 values
+top15_director</code></pre>
+<pre><code>## # A tibble: 15 x 6
+##    director          total_gross  avg_gross  med_gross   sd_gross count
+##    &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;
+##  1 Steven Spielberg   4014061704 174524422. 164435221  101421051.    23
+##  2 Michael Bay        2231242537 171634041. 138396624  127161579.    13
+##  3 Tim Burton         2071275480 129454718.  76519172  108726924.    16
+##  4 Sam Raimi          2014600898 201460090. 234903076  162126632.    10
+##  5 James Cameron      1909725910 318287652. 175562880. 309171337.     6
+##  6 Christopher Nolan  1813227576 226653447  196667606. 187224133.     8
+##  7 George Lucas       1741418480 348283696  380262555  146193880.     5
+##  8 Robert Zemeckis    1619309108 124562239. 100853835   91300279.    13
+##  9 Clint Eastwood     1378321100  72543216.  46700000   75487408.    19
+## 10 Francis Lawrence   1358501971 271700394. 281666058  135437020.     5
+## 11 Ron Howard         1335988092 111332341  101587923   81933761.    12
+## 12 Gore Verbinski     1329600995 189942999. 123207194  154473822.     7
+## 13 Andrew Adamson     1137446920 284361730  279680930. 120895765.     4
+## 14 Shawn Levy         1129750988 102704635.  85463309   65484773.    11
+## 15 Ridley Scott       1128857598  80632686.  47775715   68812285.    14</code></pre>
+<ul>
+<li>Finally, ratings. Produce a table that describes how ratings are distributed by genre. We don’t want just the mean, but also, min, max, median, SD and some kind of a histogram or density graph that visually shows how ratings are distributed.</li>
+</ul>
+<pre class="r"><code>ratings&lt;-movies%&gt;%group_by(genre)%&gt;%summarise(avg_rating=mean(rating),min_rating=min(rating),max_rating=max(rating),med_rating=median(rating),sd_rating=sd(rating),.groups = &#39;drop&#39;)
+#group movies by genre, calculate mean, min,max and SD of rating by using summarise()
+ratings</code></pre>
+<pre><code>## # A tibble: 17 x 6
+##    genre       avg_rating min_rating max_rating med_rating sd_rating
+##    &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Action            6.23        2.1        9         6.3      1.03 
+##  2 Adventure         6.51        2.3        8.6       6.6      1.09 
+##  3 Animation         6.65        4.5        8         6.9      0.968
+##  4 Biography         7.11        4.5        8.9       7.2      0.760
+##  5 Comedy            6.11        1.9        8.8       6.2      1.02 
+##  6 Crime             6.92        4.8        9.3       6.9      0.849
+##  7 Documentary       6.66        1.6        8.5       7.4      1.77 
+##  8 Drama             6.73        2.1        8.8       6.8      0.917
+##  9 Family            6.5         5.7        7.9       5.9      1.22 
+## 10 Fantasy           6.15        4.3        7.9       6.45     0.959
+## 11 Horror            5.83        3.6        8.5       5.9      1.01 
+## 12 Musical           6.75        6.3        7.2       6.75     0.636
+## 13 Mystery           6.86        4.6        8.5       6.9      0.882
+## 14 Romance           6.65        6.2        7.1       6.65     0.636
+## 15 Sci-Fi            6.66        5          8.2       6.4      1.09 
+## 16 Thriller          4.8         4.8        4.8       4.8     NA    
+## 17 Western           5.70        4.1        7.3       5.70     2.26</code></pre>
+<pre class="r"><code>ggplot(movies, aes(x = rating, colour = genre)) + geom_density() + labs(title = &quot;Ratings distribution by genre&quot;, y = &quot;Density of rating&quot;,  x = &quot;Rating&quot;)</code></pre>
+<pre><code>## Warning: Groups with fewer than two data points have been dropped.</code></pre>
+<pre><code>## Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning -
+## Inf</code></pre>
+<p><img src="/blogs/moovies_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>#draw the density plot of rating for each genre in one graph with different colors
+ggplot(movies, aes(x = rating)) + geom_density() +facet_wrap(~genre)+labs(title = &quot;Ratings distribution by genre&quot;, y = &quot;Density of rating&quot;,  x = &quot;Rating&quot;)</code></pre>
+<pre><code>## Warning: Groups with fewer than two data points have been dropped.
+
+## Warning: no non-missing arguments to max; returning -Inf</code></pre>
+<p><img src="/blogs/moovies_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<pre class="r"><code>#draw the density plot of rating for each genre in different graphs for better visibility</code></pre>
+</div>
+<div id="use-ggplot-to-answer-the-following" class="section level2">
+<h2>Use <code>ggplot</code> to answer the following</h2>
+<pre class="r"><code>ggplot(movies, aes(y=gross, x=cast_facebook_likes))+geom_point()+scale_x_log10()+scale_y_log10()</code></pre>
+<pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
+<p><img src="/blogs/moovies_files/figure-html/gross_on_fblikes-1.png" width="672" /></p>
+<pre class="r"><code>#draw the scatterplot between facebook likes and gross, scale this plot for better visibility</code></pre>
+<p>There seems to be some correlation between facebook likes and the gross box office, with higher facebook likes leading to more gross box office revenues. There are several outliers suggesting that facebook likes is not a great predictor of box office revenues. Y-axe is gross and X-axe is cast_facebook_likes.</p>
+<ul>
+<li>Examine the relationship between <code>gross</code> and <code>budget</code>. Produce a scatterplot and wri_logte one sentence discussing whether budget is likely to be a good predictor of how much money a movie will make at the box office.</li>
+</ul>
+<pre class="r"><code>ggplot(movies, aes(y=gross, x=budget))+geom_point()+scale_x_log10()+scale_y_log10()</code></pre>
+<p><img src="/blogs/moovies_files/figure-html/gross_on_budget-1.png" width="672" /></p>
+<pre class="r"><code>#draw the scatterplot between budget and gross, scale this plot for better visibility</code></pre>
+<p>Budget proves to be a better predictor of gross box office revenues with a higher correlation.It is likely that higher budgets result in better publicity such as higher facebook advertisements and better production levels such as special effects and wonderful scripts, therefore, budget is the good predictor.</p>
+<pre class="r"><code>ggplot(movies, aes(y=gross, x=rating))+geom_point()+facet_wrap(~genre)+scale_y_log10()</code></pre>
+<p><img src="/blogs/moovies_files/figure-html/gross_on_rating-1.png" width="672" /></p>
+<pre class="r"><code>#draw the scatterplot between rating and gross of each genre and scale this plot for better visibility</code></pre>
+<p>It is strange that movies with poor ratings can still make high revenues at the box office. There seems to be little correlation between the rating and money that a movie will make at the box office, therefore, IMDB ratings are not likely to be a good predictor of how much money a movie will make at the box office.</p>
+</div>
+</div>

@@ -4,7 +4,18 @@ output: html_document
 ---
 
 
-
+```{r load-libraries, include=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(mosaic)
+library(ggthemes)
+library(lubridate)
+library(here)
+library(skimr)
+library(janitor)
+library(httr)
+library(readxl)
+library(vroom)
+```
 
 
 # Analysis of movies- IMDB dataset
